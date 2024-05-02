@@ -1,0 +1,10 @@
+langchain==0.1.17
+langchain_community==0.0.36
+langchain_core==0.1.48
+langchain_google_genai==1.0.3
+python-dotenv==1.0.1
+streamlit==1.33.0
+tqdm==4.66.2
+unstructured==0.13.6
+sentence-transformers==2.7.0
+chromadb==0.5.0
