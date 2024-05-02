@@ -1,7 +1,9 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.docstore.document import Document
 from unstructured.partition.pdf import partition_pdf
 from unstructured.chunking.title import chunk_by_title
+from langchain_community.vectorstores import Chroma
 from tqdm import tqdm
 import json
 
@@ -68,4 +70,12 @@ def load_docs_from_json(filename):
 save_docs_to_json(docs, 'eu_ai_act.json')
 
 # Load the documents from the JSON file
-# load_docs_from_json('eu_ai_act.json')
+docs = load_docs_from_json('eu_ai_act.json')
+
+# Initialize HuggingFace embeddings
+model_name = "sentence-transformers/all-MiniLM-L6-v2"
+embeddings = HuggingFaceEmbeddings(model_name=model_name)
+
+# Create a VectorStore
+vector_store = Chroma.from_documents(docs, embeddings, persist_directory="./chroma_db")
+vector_store.persist()
