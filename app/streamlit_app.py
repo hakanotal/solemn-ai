@@ -7,6 +7,9 @@ from langchain.schema import StrOutputParser
 from dotenv import load_dotenv
 import streamlit as st
 import os
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 load_dotenv('.env', override=True)
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
