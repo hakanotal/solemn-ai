@@ -30,7 +30,7 @@ def initialization():
     retriever = vector_store.as_retriever(search_kwargs={"k": 5})
 
     # Initialize the Gemini model
-    llm = ChatGoogleGenerativeAI(model="gemini-pro", google_api_key=GEMINI_API_KEY)
+    llm = ChatGoogleGenerativeAI(model="models/gemini-1.5-pro-latest", google_api_key=GEMINI_API_KEY)
 
     # Prompt template to query Gemini
     llm_prompt_template = """You are a legal-assistant for question-answering tasks. 
